@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import products from "./data/products";
 import ProductCard from "./components/ProductCard";
 import Cart from "./components/Cart";
+import CheckoutForm from "./components/CheckoutForm";
 import "./App.css";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("minimarket-cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todas");
   const [selectedTag, setSelectedTag] = useState("Todas");
@@ -13,6 +17,15 @@ function App() {
 
   const categories = ["Todas", ...new Set(products.map((product) => product.category))];
   const tags = ["Todas", ...new Set(products.map((product) => product.tag))];
+
+  useEffect(() => {
+    localStorage.setItem("minimarket-cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const cartTotal = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   const filteredProducts = products
     .filter((product) =>
@@ -118,6 +131,8 @@ function App() {
         removeFromCart={removeFromCart}
         clearCart={clearCart}
       />
+
+      <CheckoutForm cart={cart} total={cartTotal} />
 
       <section className="filters-container">
         <input
