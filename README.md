@@ -28,6 +28,13 @@ https://k41s3rtk1.github.io/minimarket-web/
 
 https://github.com/K41S3RTK1/minimarket-web
 
+## Link video Youtube
+https://youtu.be/yhzmkhoACSg
+
+## Imagen de Prueba
+<img width="1440" height="900" alt="Captura de pantalla 2026-05-22 a la(s) 11 18 28 p  m" src="https://github.com/user-attachments/assets/3876dc68-fc21-42ad-b77d-f5fc4d435eb8" />
+
+
 ## Funcionalidades de la app principal
 
 La tienda principal fue desarrollada con **Vite + React** e incluye:
